@@ -1,0 +1,58 @@
+vector<int> Solution::nextGreater(vector<int> &A) {
+    
+  /*  vector <int> ans;
+  
+    for(int i=0;i<A.size()-1;i++)
+    {
+        int flag=0;
+        
+        for(int j=i+1;j<A.size();j++)
+        {
+            if(A[j]>A[i])
+            {
+                ans.push_back(A[j]);
+
+                flag=1;
+                break;
+                
+            }
+            
+        }
+        if(flag==0)
+            ans.push_back(-1);
+        
+    }
+    ans.push_back(-1);
+    return ans;     */
+    
+    int n=A.size();
+    
+    vector<int> ans(n,-1);
+    stack<int> s;
+    
+    for(int i=n-1;i>=0;i--)
+    {
+        while(!s.empty() && s.top()<=A[i])
+        {
+            s.pop();
+        }
+        
+        if(s.empty()==true)
+        {
+            ans[i]=-1;
+        }
+        
+        else
+        {
+            ans[i]=s.top();
+        }
+        
+        s.push(A[i]);
+            
+    }
+    return ans;
+    
+    
+    
+    
+}
